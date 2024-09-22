@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Intelligent Information System Lab</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="https://iis.tik.poliupg.ac.id/beranda/assets/image/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/66be31d54e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://iis.tik.poliupg.ac.id/beranda/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h6 id="status-header">
+            Schedule for Academic Year 2024-2025 - First Semester
+        </h6>
+        <div class="status-card">
+            <div id="calendar-container">
+                <div id="calendar" class="fc fc-media-screen fc-direction-ltr fc-theme-standard fc-liquid-hack" 
+                style="height: 100%;">
+                    <div class="fc-header-toolbar fc-toolbar fc-toolbar-ltr">
+                        <div class="fc-toolbar-chunk">
+                            <h2 id="fc-dom-1" class="fc-toolbar-title">Sep 22 - 28, 2024</h2>
+                        </div>
+                        <div class="fc-toolbar-chunk"></div>
+                        <div class="fc-toolbar-chunk">
+                            <div class="fc-button-group">
+                                <button class="fc-prev-button fc-button fc-button-primary" type="button" title="Previous week" aria-pressed="false">
+                                    <span class="fc-icon fc-icon-chevron-left" role="img">
+                                        ::before
+                                    </span>
+                                </button>
+                                <button>
+                                    <span class="fc-icon fc-icon-chevron-right" role="img">
+                                       ::before 
+                                    </span>
+                                </button>
+                                <button class="fc-today-button fc-button fc-button-primary" type="button" title="This week" disabled="" aria-pressed="false">today</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fc-view-harness fc-view-harness-active" aria-labelledby="fc-dom-1">
+                        <div class="fc-timeGridWeek-view fc-view fc-timeggrid">
+                            <table class="fc-scrollgrid fc-scrollgrid-liquid" role="grid">
+                                <thbody role="rowgroup">
+                                    
+                                </thbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #calendar {
+            margin: 0;
+            height: 200%;
+        }
+
+        #calendar-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .fc-header-toolbar {
+            padding-top: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+
+        .fc-daygrid-event {
+            white-space: normal !important;
+            align-items: normal !important;
+        }
+
+        .fc-direction-ltr .fc-daygrid-event.fc-event-end,
+        .fc-event-main-frame {
+            flex-direction: column-reverse
+        }
+
+        .status-card {
+            height: 36rem
+        }
+    </style>
+
+    <div id='loading'></div>
+    <div class="container">
+        <h6 id="status-header">Schedule for Academic Year 2024-2025 - First Semester</h6>
+        <div class='status-card'>
+            <div id='calendar-container'>
+                <div id='calendar'></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src='https://iis.tik.poliupg.ac.id/beranda/assets/fullcalendar/dist/index.global.js'></script>
+    <script src='https://iis.tik.poliupg.ac.id/assets/fullcalendar/lib/locales-all.js'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var initialLocaleCode = 'en';
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                height: '100%',
+                slotMinTime: '07:30',
+                slotMaxTime: '20:00',
+                locale: initialLocaleCode,
+                initialView: 'timeGridWeek',
+                initialDate: '2024-09-21',
+                displayEventEnd: true,
+                headerToolbar: {
+                    right: 'prev,next,today',
+                    left: 'title',
+                    center: ''
+                },
+                views: {
+                    listWeek: {
+                        buttonText: 'List Week'
+                    },
+                    timeGridWeek: {
+                        buttonText: 'Grid Week'
+                    },
+                    timeGridDay: {
+                        buttonText: 'Grid Day'
+                    },
+                    listMonth: {
+                        buttonText: 'List month'
+                    }
+                },
+                weekNumbers: true,
+                editable: false,
+                droppable: true,
+                events: {
+                    url: 'https://iis.tik.poliupg.ac.id/beranda/json/events.json'
+                },
+                loading: function (bool) {
+                    document.getElementById('loading').style.display = bool ? 'block' : 'none';
+                }
+            });
+            calendar.render();
+        });
+    </script>
+
+    <footer>
+        <div class="container">
+            2024 &#169; Department of Informatics and Computer Engineering - Politeknik Negeri Ujung Pandang
+        </div>
+    </footer>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
